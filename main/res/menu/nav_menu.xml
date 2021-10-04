@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="@string/user">
+        <menu>
+            <item android:title="@string/current_profile_avatar"
+                android:id="@+id/menu_profile_avatar"/>
+        </menu>
+    </item>
+    <item android:title="@string/navigation">
+        <menu>
+            <item
+                android:id="@+id/menu_profile"
+                android:icon="@drawable/user_96px"
+                android:title="@string/profiles" />
+            <item
+                android:id="@+id/menu_suggestions"
+                android:icon="@android:drawable/stat_notify_chat"
+                android:title="@string/suggestions" />
+            <item android:title="@string/createWorkout"
+                android:icon="@drawable/workout_barbell_96px"
+                android:id="@+id/menu_workout"/>
+            <item android:title="@string/view_workouts"
+                android:visible="false"
+                android:icon="@drawable/workout_dumbbel_96px"
+                android:id="@+id/view_workouts"/>
+        </menu>
+    </item>
+    <item android:title="@string/app_menu">
+        <menu>
+            <item
+                android:id="@+id/menu_read_me"
+                android:icon="@android:drawable/ic_dialog_info"
+                android:title="@string/read_me" />
+            <item android:title="@string/settings"
+                android:icon="@drawable/settings_96px"
+                android:id="@+id/menu_settings"/>
+        </menu>
+    </item>
+</menu>
