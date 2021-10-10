@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".SuggestionsFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/suggestionSelectionLayout">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/suggestionsToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/gradient_background_violet"
+            android:tooltipText="@string/OFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_constraintEnd_toEndOf="parent"
+            tools:layout_constraintStart_toStartOf="parent"
+            tools:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/suggestionToolbarText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/goal_title"
+                android:textColor="@color/custom_purple"
+                android:textSize="36sp" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/goalOptionOne"
+            style="@style/ButtonOne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:onClick="onClickPrepareForSuggestion"
+            android:text="@string/goal_option_one"
+            android:textColor="@color/white"
+            android:padding="2dp"
+            android:drawableEnd="@drawable/ic_baseline_arrow_downward_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/suggestionsToolbar" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/goalOptionTwo"
+            style="@style/ButtonOne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:onClick="onClickPrepareForSuggestion"
+            android:text="@string/goal_option_two"
+            android:textColor="@color/white"
+            android:padding="2dp"
+            android:drawableEnd="@drawable/ic_baseline_compress_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/goalOptionOne" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/goalOptionThree"
+            style="@style/ButtonOne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:onClick="onClickPrepareForSuggestion"
+            android:text="@string/goal_option_three"
+            android:textColor="@color/white"
+            android:padding="2dp"
+            android:drawableEnd="@drawable/ic_baseline_arrow_upward_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/goalOptionTwo" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/suggestionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:id="@+id/suggestionOne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/empty"
+            android:textColor="@color/custom_orange"
+            android:textSize="16sp"
+            android:background="@drawable/gradient_background_violet"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/arrowDownOne"
+            android:layout_width="51dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="171dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="171dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/suggestionOne"
+            app:srcCompat="@drawable/blue_arrow_down_96px" />
+
+        <TextView
+            android:id="@+id/suggestionTwo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/empty"
+            android:textColor="@color/custom_orange"
+            android:textSize="16sp"
+            android:background="@drawable/gradient_background_violet"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/arrowDownOne" />
+
+        <ImageView
+            android:id="@+id/arrowDownTwo"
+            android:layout_width="51dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="171dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="171dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/suggestionTwo"
+            app:srcCompat="@drawable/blue_arrow_down_96px" />
+
+        <TextView
+            android:id="@+id/suggestionThree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/empty"
+            android:textColor="@color/custom_orange"
+            android:textSize="16sp"
+            android:background="@drawable/gradient_background_violet"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/arrowDownTwo" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/ButtonOne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:drawableStart="@drawable/ic_baseline_reset_24"
+            android:onClick="onClickResetSuggestion"
+            android:text="@string/reset_selection"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/suggestionThree" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

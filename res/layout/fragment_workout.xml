@@ -1,0 +1,1165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools2="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WorkoutFragment">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/save_and_proceed"
+        style="@style/ButtonOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:layout_marginBottom="90dp"
+        android:contentDescription="@string/save"
+        android:drawableEnd="@drawable/ic_baseline_save_24"
+        android:onClick="onClickSaveAndProceed"
+        android:padding="2dp"
+        android:text="@string/save"
+        android:textColor="@color/white"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="8dp"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/workoutCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools2:cardElevation="2dp"
+        android:visibility="gone"
+        android:layout_gravity="top|end"
+        android:background="@drawable/curved_corners_white_violet_stroke">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/curved_corners_white_violet_stroke">
+
+            <TextView
+                android:id="@+id/workoutCardTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/card_view_title"
+                android:textColor="@color/custom_violet"
+                android:textSize="18sp"
+                android:padding="2dp"
+                android:background="@drawable/gradient_purple_to_white_diagonal"/>
+
+            <TextView
+                android:id="@+id/workoutCardSet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/workoutCardTitle"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/set"
+                android:textColor="@color/custom_violet"
+                android:textSize="16sp"
+                android:padding="3dp"
+                android:background="@drawable/curved_corners_white_violet_stroke"/>
+
+            <EditText
+                android:id="@+id/workoutCardSetInput"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/workoutCardTitle"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_toEndOf="@id/workoutCardSet"
+                android:background="@drawable/curved_corners_white_violet_stroke"
+                android:hint="@string/set_count"
+                android:padding="3dp"
+                android:textColor="@color/custom_violet"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/workoutRep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rep"
+                android:textColor="@color/custom_violet"
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:padding="3dp"
+                android:background="@drawable/curved_corners_white_violet_stroke"
+                android:layout_below="@+id/workoutCardSet"/>
+
+            <EditText
+                android:id="@+id/workoutCardRepInput"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/workoutCardSet"
+                android:layout_toEndOf="@id/workoutRep"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:hint="@string/rep_count"
+                android:textColor="@color/custom_violet"
+                android:textSize="16sp"
+                android:padding="3dp"
+                android:background="@drawable/curved_corners_white_violet_stroke"/>
+
+            <Button
+                android:id="@+id/workoutCardSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/curved_corners_white_violet_stroke"
+                android:textColor="@color/custom_purple"
+                android:text="@string/just_save"
+                android:textSize="16sp"
+                android:onClick="saveRepsAndSets"
+                android:layout_below="@+id/workoutRep"
+                android:layout_marginStart="4dp"
+                android:layout_marginBottom="4dp"/>
+
+            <Button
+                android:id="@+id/workoutCardCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/curved_corners_white_violet_stroke"
+                android:textColor="@color/custom_purple"
+                android:text="@string/cancel"
+                android:textSize="16sp"
+                android:onClick="onClickCancelRepSetSetup"
+                android:layout_below="@+id/workoutRep"
+                android:layout_toEndOf="@id/workoutCardSave"
+                android:layout_marginStart="4dp"
+                android:layout_marginBottom="4dp"/>
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!--Chest-->
+            <CheckBox
+                android:id="@+id/chestCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/gradient_button_one_pressed"
+                android:onClick="onCheckBoxClicked"
+                android:padding="2dp"
+                android:text="@string/chest"
+                android:textColor="@color/custom_purple"
+                android:textSize="34sp"
+                tools2:layout_constraintBottom_toTopOf="@+id/chest_layout"
+                tools2:layout_constraintStart_toStartOf="parent"
+                tools2:layout_constraintTop_toTopOf="parent" />
+
+            <RelativeLayout
+                android:id="@+id/chest_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:visibility="gone"
+                tools2:layout_constraintStart_toStartOf="parent"
+                tools2:layout_constraintTop_toBottomOf="@+id/chestCheckBox">
+
+                <CheckBox
+                    android:id="@+id/chest_press_normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="chestPressNormal"
+                    android:text="@string/DUMBBEL_CHEST_PRESS_NORMAL"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/chest_bench_press_normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/chest_press_normal"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="chestBenchPressNormal"
+                    android:text="@string/BENCH_PRESS_NORMAL"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/chest_bench_press_incline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/chest_bench_press_normal"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="chestBenchPressIncline"
+                    android:text="@string/BENCH_PRESS_INCLINE"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/chest_dumbbel_press_incline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/chest_bench_press_incline"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="chestDumbbelChestPressIncline"
+                    android:text="@string/DUMBBEL_CHEST_PRESS_INCLINE"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/chest_dumbbel_fly"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/chest_dumbbel_press_incline"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="chestDumbbelFlyNormal"
+                    android:text="@string/DUMBBEL_FLY_NORMAL"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/chest_dumbbel_fly_incline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/chest_dumbbel_fly"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="chestDumbbelFlyIncline"
+                    android:text="@string/DUMBBEL_FLY_INCLINE"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/chest_cable_cross_over"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/chest_dumbbel_fly_incline"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="chestCableCrossOver"
+                    android:text="@string/CABLE_CROSS_OVER"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/chest_dips"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/chest_cable_cross_over"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="chestDips"
+                    android:text="@string/DIP"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/chestGarbage"
+                style="@style/ButtonOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:drawableLeft="@drawable/ic_baseline_delete_icon_white_24"
+                android:enabled="false"
+                android:onClick="onClickDeleteWorkoutSet"
+                android:padding="2dp"
+                android:tag="chestGarbage"
+                android:text="@string/delete_plan"
+                android:textColor="@color/white"
+                android:visibility="invisible"
+                tools2:layout_constraintBottom_toTopOf="@+id/biceps_layout"
+                tools2:layout_constraintStart_toStartOf="parent"
+                tools2:layout_constraintTop_toBottomOf="@+id/chest_layout"
+                tools2:layout_constraintVertical_bias="0.0"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/chest_selection_reset"
+                style="@style/ButtonOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="16dp"
+                android:drawableEnd="@drawable/ic_baseline_cancel_24"
+                android:onClick="onClickResetSelection"
+                android:padding="2dp"
+                android:tag="chestReset"
+                android:text="@string/reset_selection"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                tools2:layout_constraintBottom_toTopOf="@+id/biceps_layout"
+                tools2:layout_constraintEnd_toEndOf="parent"
+                tools2:layout_constraintTop_toBottomOf="@+id/chest_layout"
+                tools2:layout_constraintVertical_bias="0.09" />
+
+            <!--Biceps-->
+
+            <CheckBox
+                android:id="@+id/bicepsCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/gradient_button_one_pressed"
+                android:onClick="onCheckBoxClicked"
+                android:padding="2dp"
+                android:text="@string/biceps"
+                android:textColor="@color/custom_purple"
+                android:textSize="34sp"
+                tools2:layout_constraintBottom_toTopOf="@+id/biceps_layout"
+                tools2:layout_constraintStart_toStartOf="parent"
+                tools2:layout_constraintTop_toBottomOf="@+id/chestGarbage" />
+
+            <RelativeLayout
+                android:id="@+id/biceps_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                tools2:layout_constraintStart_toStartOf="parent"
+                tools2:layout_constraintTop_toBottomOf="@+id/bicepsCheckBox">
+
+                <CheckBox
+                    android:id="@+id/biceps_barbel_curls"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="bicepsBarbellCurl"
+                    android:text="@string/BARBELL_CURL"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/biceps_dumbbel_curls"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/biceps_barbel_curls"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="bicepsDumbbelCurl"
+                    android:text="@string/DUMBBEL_CURL"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/biceps_cable_curls"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/biceps_dumbbel_curls"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="bicepsCableCurl"
+                    android:text="@string/CABLE_CURL"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/biceps_concentration_curls"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/biceps_cable_curls"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="bicepsConcentrationCurl"
+                    android:text="@string/CONCENTRATION_CURL"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/biceps_preacher_curls"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/biceps_concentration_curls"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="bicepsPreacherCurls"
+                    android:text="@string/PREACHER_CURL"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/biceps_hammer_curls"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/biceps_preacher_curls"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="bicepsHammerCurls"
+                    android:text="@string/HAMMER_CURLS"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/bicepsGarbage"
+                style="@style/ButtonOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:drawableLeft="@drawable/ic_baseline_delete_icon_white_24"
+                android:enabled="false"
+                android:onClick="onClickDeleteWorkoutSet"
+                android:padding="2dp"
+                android:tag="bicepsGarbage"
+                android:text="@string/delete_plan"
+                android:textColor="@color/white"
+                android:visibility="invisible"
+                tools2:layout_constraintBottom_toTopOf="@+id/triceps_layout"
+                tools2:layout_constraintStart_toStartOf="parent"
+                tools2:layout_constraintTop_toBottomOf="@+id/biceps_layout"
+                tools2:layout_constraintVertical_bias="0.0"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/biceps_selection_reset"
+                style="@style/ButtonOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="16dp"
+                android:drawableEnd="@drawable/ic_baseline_cancel_24"
+                android:onClick="onClickResetSelection"
+                android:padding="2dp"
+                android:tag="bicepsReset"
+                android:text="@string/reset_selection"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                tools2:layout_constraintBottom_toTopOf="@+id/triceps_layout"
+                tools2:layout_constraintEnd_toEndOf="parent"
+                tools2:layout_constraintTop_toBottomOf="@+id/biceps_layout"
+                tools2:layout_constraintVertical_bias="0.09" />
+
+            <!--Triceps-->
+
+            <CheckBox
+                android:id="@+id/tricepsCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/gradient_button_one_pressed"
+                android:onClick="onCheckBoxClicked"
+                android:padding="2dp"
+                android:text="@string/triceps"
+                android:textColor="@color/custom_purple"
+                android:textSize="34sp"
+                tools2:layout_constraintBottom_toTopOf="@+id/triceps_layout"
+                tools2:layout_constraintStart_toStartOf="parent"
+                tools2:layout_constraintTop_toBottomOf="@+id/bicepsGarbage" />
+
+            <RelativeLayout
+                android:id="@+id/triceps_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                tools2:layout_constraintStart_toStartOf="parent"
+                tools2:layout_constraintTop_toBottomOf="@+id/tricepsCheckBox">
+
+                <CheckBox
+                    android:id="@+id/cable_triceps_push_down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="tricepsCableTricepsPushDown"
+                    android:text="@string/CABLE_TRICEPS_PUSH_DOWN_ANY"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/triceps_extension_any"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cable_triceps_push_down"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="tricepsExtensionAny"
+                    android:text="@string/TRICEPS_EXTENSION_ANY"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/triceps_dips"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/triceps_extension_any"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="tricepsDips"
+                    android:text="@string/TRICEPS_DIPS"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/triceps_skull_crusher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/triceps_dips"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="tricepsSkullCrusher"
+                    android:text="@string/SKULL_CRUSHER"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/triceps_bench_dips"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/triceps_skull_crusher"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="tricepsBenchDips"
+                    android:text="@string/BENCH_DIPS"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/tricepsGarbage"
+                style="@style/ButtonOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:drawableLeft="@drawable/ic_baseline_delete_icon_white_24"
+                android:enabled="false"
+                android:onClick="onClickDeleteWorkoutSet"
+                android:padding="2dp"
+                android:tag="tricepsGarbage"
+                android:text="@string/delete_plan"
+                android:textColor="@color/white"
+                android:visibility="invisible"
+                tools2:layout_constraintBottom_toTopOf="@+id/back_layout"
+                tools2:layout_constraintStart_toStartOf="parent"
+                tools2:layout_constraintTop_toBottomOf="@+id/triceps_layout"
+                tools2:layout_constraintVertical_bias="0.0"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/triceps_selection_reset"
+                style="@style/ButtonOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="16dp"
+                android:drawableEnd="@drawable/ic_baseline_cancel_24"
+                android:onClick="onClickResetSelection"
+                android:padding="2dp"
+                android:tag="tricepsReset"
+                android:text="@string/reset_selection"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                tools2:layout_constraintBottom_toTopOf="@+id/back_layout"
+                tools2:layout_constraintEnd_toEndOf="parent"
+                tools2:layout_constraintTop_toBottomOf="@+id/triceps_layout"
+                tools2:layout_constraintVertical_bias="0.09" />
+
+            <!--Back-->
+            <CheckBox
+                android:id="@+id/backCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/gradient_button_one_pressed"
+                android:onClick="onCheckBoxClicked"
+                android:padding="2dp"
+                android:text="@string/back"
+                android:textColor="@color/custom_purple"
+                android:textSize="34sp"
+                tools2:layout_constraintBottom_toTopOf="@+id/back_layout"
+                tools2:layout_constraintStart_toStartOf="parent"
+                tools2:layout_constraintTop_toBottomOf="@+id/tricepsGarbage" />
+
+            <RelativeLayout
+                android:id="@+id/back_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                tools2:layout_constraintStart_toStartOf="parent"
+                tools2:layout_constraintTop_toBottomOf="@+id/backCheckBox">
+
+                <CheckBox
+                    android:id="@+id/back_deadlift_normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="backDeadliftNormal"
+                    android:text="@string/DEADLIFT_NORMAL"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/back_deadlift_sumo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/back_deadlift_normal"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="backDeadliftSumo"
+                    android:text="@string/DEADLIFT_SUMO"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/back_chin_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/back_deadlift_sumo"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="backChinUp"
+                    android:text="@string/CHIN_UP"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/back_pull_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/back_chin_up"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="backPullUp"
+                    android:text="@string/PULL_UP"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/back_lat_pull_down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/back_pull_up"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="backLatPullDown"
+                    android:text="@string/LAT_PULL_DOWN"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/back_seated_cable_row"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/back_lat_pull_down"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="backSeatedCableRow"
+                    android:text="@string/SEATED_CABLE_ROW"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/back_incline_dumbbel_row"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/back_seated_cable_row"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="backInclineDumbbelRow"
+                    android:text="@string/INCLINE_DUMBBEL_ROW"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/backGarbage"
+                style="@style/ButtonOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:drawableLeft="@drawable/ic_baseline_delete_icon_white_24"
+                android:enabled="false"
+                android:onClick="onClickDeleteWorkoutSet"
+                android:padding="2dp"
+                android:tag="backGarbage"
+                android:text="@string/delete_plan"
+                android:textColor="@color/white"
+                android:visibility="invisible"
+                tools2:layout_constraintBottom_toTopOf="@+id/legs_layout"
+                tools2:layout_constraintStart_toStartOf="parent"
+                tools2:layout_constraintTop_toBottomOf="@+id/back_layout"
+                tools2:layout_constraintVertical_bias="0.0"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/back_selection_reset"
+                style="@style/ButtonOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="16dp"
+                android:drawableEnd="@drawable/ic_baseline_cancel_24"
+                android:onClick="onClickResetSelection"
+                android:padding="2dp"
+                android:tag="backReset"
+                android:text="@string/reset_selection"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                tools2:layout_constraintBottom_toTopOf="@+id/legs_layout"
+                tools2:layout_constraintEnd_toEndOf="parent"
+                tools2:layout_constraintTop_toBottomOf="@+id/back_layout"
+                tools2:layout_constraintVertical_bias="0.09" />
+
+            <!--Legs-->
+            <CheckBox
+                android:id="@+id/legsCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/gradient_button_one_pressed"
+                android:onClick="onCheckBoxClicked"
+                android:padding="2dp"
+                android:text="@string/legs"
+                android:textColor="@color/custom_purple"
+                android:textSize="34sp"
+                tools2:layout_constraintBottom_toTopOf="@+id/legs_layout"
+                tools2:layout_constraintStart_toStartOf="parent"
+                tools2:layout_constraintTop_toBottomOf="@+id/backGarbage" />
+
+            <RelativeLayout
+                android:id="@+id/legs_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                tools2:layout_constraintStart_toStartOf="parent"
+                tools2:layout_constraintTop_toBottomOf="@+id/legsCheckBox">
+
+                <CheckBox
+                    android:id="@+id/legs_squat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="legsSquat"
+                    android:text="@string/SQUAT"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/legs_hamstring_curls"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/legs_squat"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="legsHamstringCurls"
+                    android:text="@string/HAMSTRING_CURL"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/legs_lunges"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/legs_hamstring_curls"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="legsLunges"
+                    android:text="@string/LUNGES"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/leg_press"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/legs_lunges"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="legPress"
+                    android:text="@string/LEG_PRESS"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/legsGarbage"
+                style="@style/ButtonOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:drawableLeft="@drawable/ic_baseline_delete_icon_white_24"
+                android:enabled="false"
+                android:onClick="onClickDeleteWorkoutSet"
+                android:padding="2dp"
+                android:tag="legsGarbage"
+                android:text="@string/delete_plan"
+                android:textColor="@color/white"
+                android:visibility="invisible"
+                tools2:layout_constraintBottom_toTopOf="@+id/shoulders_layout"
+                tools2:layout_constraintStart_toStartOf="parent"
+                tools2:layout_constraintTop_toBottomOf="@+id/legs_layout"
+                tools2:layout_constraintVertical_bias="0.0"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/legs_selection_reset"
+                style="@style/ButtonOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="16dp"
+                android:drawableEnd="@drawable/ic_baseline_cancel_24"
+                android:onClick="onClickResetSelection"
+                android:padding="2dp"
+                android:tag="legsReset"
+                android:text="@string/reset_selection"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                tools2:layout_constraintBottom_toTopOf="@+id/shoulders_layout"
+                tools2:layout_constraintEnd_toEndOf="parent"
+                tools2:layout_constraintTop_toBottomOf="@+id/legs_layout"
+                tools2:layout_constraintVertical_bias="0.09" />
+
+            <!--Shoulders-->
+            <CheckBox
+                android:id="@+id/shouldersCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/gradient_button_one_pressed"
+                android:onClick="onCheckBoxClicked"
+                android:padding="2dp"
+                android:text="@string/shoulders"
+                android:textColor="@color/custom_purple"
+                android:textSize="34sp"
+                tools2:layout_constraintBottom_toTopOf="@+id/shoulders_layout"
+                tools2:layout_constraintStart_toStartOf="parent"
+                tools2:layout_constraintTop_toBottomOf="@+id/legsGarbage" />
+
+            <RelativeLayout
+                android:id="@+id/shoulders_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                tools2:layout_constraintStart_toStartOf="parent"
+                tools2:layout_constraintTop_toBottomOf="@+id/shouldersCheckBox">
+
+                <CheckBox
+                    android:id="@+id/shoulders_seated_dumbbel_shoulder_press"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="shouldersSeatedDumbbelShoulderPress"
+                    android:text="@string/SEATED_DUMBBEL_SHOULDER_PRESS"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/shoulders_face_pulls"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/shoulders_seated_dumbbel_shoulder_press"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="shouldersFacePulls"
+                    android:text="@string/FACE_PULLS"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/shoulders_seated_military_press"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/shoulders_face_pulls"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="shouldersSeatedMilitaryPress"
+                    android:text="@string/SEATED_MILITARY_PRESS"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/shoulders_lateral_raises"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/shoulders_seated_military_press"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="shouldersLateralRaises"
+                    android:text="@string/LATERAL_RAISES"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/shoulders_front_raise"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/shoulders_lateral_raises"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="shouldersFrontRaise"
+                    android:text="@string/DUMBBEL_FRONT_RAISE"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/shouldersGarbage"
+                style="@style/ButtonOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:drawableLeft="@drawable/ic_baseline_delete_icon_white_24"
+                android:enabled="false"
+                android:onClick="onClickDeleteWorkoutSet"
+                android:padding="2dp"
+                android:tag="shouldersGarbage"
+                android:text="@string/delete_plan"
+                android:textColor="@color/white"
+                android:visibility="invisible"
+                tools2:layout_constraintBottom_toBottomOf="parent"
+                tools2:layout_constraintStart_toStartOf="parent"
+                tools2:layout_constraintTop_toBottomOf="@id/shoulders_layout"
+                tools2:layout_constraintVertical_bias="0.0"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+
+            <!--CARDIO-->
+            <CheckBox
+                android:id="@+id/cardioCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/gradient_button_one_pressed"
+                android:onClick="onCheckBoxClicked"
+                android:padding="2dp"
+                android:text="@string/CARDIO"
+                android:textColor="@color/custom_purple"
+                android:textSize="34sp"
+                tools2:layout_constraintBottom_toTopOf="@+id/cardio_layout"
+                tools2:layout_constraintStart_toStartOf="parent"
+                tools2:layout_constraintTop_toBottomOf="@+id/shouldersGarbage" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/shoulders_selection_reset"
+                style="@style/ButtonOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:drawableEnd="@drawable/ic_baseline_cancel_24"
+                android:onClick="onClickResetSelection"
+                android:padding="2dp"
+                android:tag="shouldersReset"
+                android:text="@string/reset_selection"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                tools2:layout_constraintEnd_toEndOf="parent"
+                tools2:layout_constraintTop_toBottomOf="@+id/shoulders_layout" />
+
+            <RelativeLayout
+                android:id="@+id/cardio_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                tools2:layout_constraintStart_toStartOf="parent"
+                tools2:layout_constraintTop_toBottomOf="@+id/cardioCheckBox">
+
+                <CheckBox
+                    android:id="@+id/cardio_treadmill"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="cardioTreadmill"
+                    android:text="@string/treadmill"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/cardio_rope_skipping"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cardio_treadmill"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="cardioRopeSkipping"
+                    android:text="@string/skipping_rope"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/cardio_cycling"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cardio_rope_skipping"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="cardioCycling"
+                    android:text="@string/cycling"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/cardio_hiit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cardio_cycling"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="cardioHIIT"
+                    android:text="@string/HIIT"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+                <CheckBox
+                    android:id="@+id/cardio_elliptical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cardio_hiit"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/gradient_purple_to_white_diagonal"
+                    android:buttonTint="@color/custom_purple"
+                    android:onClick="onClickLaunchCardView"
+                    android:padding="2dp"
+                    android:tag="cardioElliptical"
+                    android:text="@string/elliptical"
+                    android:textColor="@color/custom_purple"
+                    tools2:strokeColor="@color/custom_purple" />
+
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/cardioGarbage"
+                style="@style/ButtonOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:drawableLeft="@drawable/ic_baseline_delete_icon_white_24"
+                android:enabled="false"
+                android:onClick="onClickDeleteWorkoutSet"
+                android:padding="2dp"
+                android:tag="cardioGarbage"
+                android:text="@string/delete_plan"
+                android:textColor="@color/white"
+                android:visibility="invisible"
+                tools2:layout_constraintBottom_toBottomOf="parent"
+                tools2:layout_constraintStart_toStartOf="parent"
+                tools2:layout_constraintTop_toBottomOf="@id/cardio_layout"
+                tools2:layout_constraintVertical_bias="0.0"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/cardio_selection_reset"
+                style="@style/ButtonOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:drawableEnd="@drawable/ic_baseline_cancel_24"
+                android:onClick="onClickResetSelection"
+                android:padding="2dp"
+                android:tag="cardioReset"
+                android:text="@string/reset_selection"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                tools2:layout_constraintEnd_toEndOf="parent"
+                tools2:layout_constraintTop_toBottomOf="@+id/cardio_layout" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</FrameLayout>
