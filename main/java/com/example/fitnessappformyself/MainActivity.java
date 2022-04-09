@@ -1,6 +1,5 @@
 package com.example.fitnessappformyself;
 
-import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -13,36 +12,18 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
     private Person profilePerson = new Person();
-
-    private CheckBox currentCheckBox = null;
-
-    private boolean changeOccurred = false;
-
-    private final ArrayList<String> chestMoves = new ArrayList<>();
-    private final ArrayList<String> bicepsMoves = new ArrayList<>();
-    private final ArrayList<String> tricepsMoves = new ArrayList<>();
-    private final ArrayList<String> backMoves = new ArrayList<>();
-    private final ArrayList<String> legMoves = new ArrayList<>();
-    private final ArrayList<String> shouldersMoves = new ArrayList<>();
-    private final ArrayList<String> cardioMoves = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void getParcelableIntent(){
         Intent i = getIntent();
-        profilePerson = i.getParcelableExtra(StaticStrings.PROFILE);
+        profilePerson = i.getParcelableExtra("profile");
     }
     public void saveProfiles(){
         //if there is a new profile, save it in an available profile slot
@@ -148,14 +129,13 @@ public class MainActivity extends AppCompatActivity {
             startActivity(j);
     }
     ////CALENDAR FRAGMENT////
-    public void onClickLaunchCalendarSetupAndResetCalendar(View v){
-        Intent i = new Intent(this, WorkoutSetupTwo.class);
-        startActivity(i);
-    }
+    //collective methods for on click listeners
+
     public void onClickViewInDetail(View v){
         Intent i = new Intent(this, WorkoutOfTheDayActivity.class);
         startActivity(i);
     }
+    //on click functionality methods end
     ////SUGGESTION FRAGMENT////
     public void onClickPrepareForSuggestion(View v){
         ConstraintLayout suggestionLayout = findViewById(R.id.suggestionSelectionLayout);

@@ -93,7 +93,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
     public void launchProfileSetupNextWithIntent(Person person){
         Intent i = new Intent(this, create_profile_next.class);
-        i.putExtra(StaticStrings.PROFILE, person);
+        i.putExtra("profile", person);
         startActivity(i);
         finish();
     }

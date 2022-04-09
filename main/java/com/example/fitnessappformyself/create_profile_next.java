@@ -52,11 +52,11 @@ public class create_profile_next extends AppCompatActivity {
     }
     public void getParcelableIntent(){
         Intent i = getIntent();
-        anotherDummyPerson = i.getParcelableExtra(StaticStrings.PROFILE);
+        anotherDummyPerson = i.getParcelableExtra("profile");
     }
     public void onClickSendAndLaunch(){
         Intent i = new Intent(this, MainActivity.class);
-        i.putExtra(StaticStrings.PROFILE, anotherDummyPerson);
+        i.putExtra("profile", anotherDummyPerson);
         SharedPreferences pref = getSharedPreferences("DoesProfileExist",MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         if(pref.getString("exists",null).equals("no"))

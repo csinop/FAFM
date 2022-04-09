@@ -10,12 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FitnessAppForMyself">
         <activity
+            android:name=".WeeklyPlanActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+        <activity
             android:name=".WorkoutOfTheDayActivity"
             android:exported="true"
-            android:label="Today's Workout" />
-        <activity
-            android:name=".WorkoutSetupTwo"
-            android:exported="true" />
+            android:label="Today&apos;s Workout"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".CrashActivity"
             android:exported="true"
@@ -27,7 +29,8 @@
         <activity
             android:name=".ProfActivity"
             android:exported="true"
-            android:label="Profiles" />
+            android:label="Profiles"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ProfileActivity"
             android:exported="true"
@@ -35,14 +38,17 @@
         <activity
             android:name=".SettingsActivity"
             android:exported="true"
-            android:label="Settings" />
+            android:label="Settings"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

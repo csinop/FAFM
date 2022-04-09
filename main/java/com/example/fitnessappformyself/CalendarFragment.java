@@ -2,6 +2,7 @@ package com.example.fitnessappformyself;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -13,7 +14,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -98,6 +98,9 @@ public class CalendarFragment extends Fragment {
         createCalendarString("Friday",relativeLayoutF);
         createCalendarString("Saturday",relativeLayoutSt);
         createCalendarString("Sunday",relativeLayoutS);
+
+        //set onClick listeners
+        setCalendarListeners();
     }
     //MY METHODS//
     public String adjustForLanguageDifferences(@NonNull String day){
@@ -149,5 +152,67 @@ public class CalendarFragment extends Fragment {
             row.addView(tv);
             tableLayout.addView(row);
         }
+    }
+
+    // on click functionality methods start
+    public void setCalendarListeners(){
+        setMondayOnClickListener();
+        setTuesdayOnClickListener();
+        setWednesdayOnClickListener();
+        setThursdayOnClickListener();
+        setFridayOnClickListener();
+        setSaturdayOnClickListener();
+        setSundayOnClickListener();
+    }
+
+    //calendar on click functionality methods
+    public void setMondayOnClickListener(){
+        requireView().findViewById(R.id.mainMenuMonday).setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), WeeklyPlanActivity.class);
+            intent.putExtra("weekday","Monday");
+            startActivity(intent);
+        });
+    }
+    public void setTuesdayOnClickListener(){
+        requireView().findViewById(R.id.mainMenuTuesday).setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), WeeklyPlanActivity.class);
+            intent.putExtra("weekday","Tuesday");
+            startActivity(intent);
+        });
+    }
+    public void setWednesdayOnClickListener(){
+        requireView().findViewById(R.id.mainMenuWednesday).setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), WeeklyPlanActivity.class);
+            intent.putExtra("weekday","Wednesday");
+            startActivity(intent);
+        });
+    }
+    public void setThursdayOnClickListener(){
+        requireView().findViewById(R.id.mainMenuThursday).setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), WeeklyPlanActivity.class);
+            intent.putExtra("weekday","Thursday");
+            startActivity(intent);
+        });
+    }
+    public void setFridayOnClickListener(){
+        requireView().findViewById(R.id.mainMenuFriday).setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), WeeklyPlanActivity.class);
+            intent.putExtra("weekday","Friday");
+            startActivity(intent);
+        });
+    }
+    public void setSaturdayOnClickListener(){
+        requireView().findViewById(R.id.mainMenuSaturday).setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), WeeklyPlanActivity.class);
+            intent.putExtra("weekday","Saturday");
+            startActivity(intent);
+        });
+    }
+    public void setSundayOnClickListener(){
+        requireView().findViewById(R.id.mainMenuSunday).setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), WeeklyPlanActivity.class);
+            intent.putExtra("weekday","Sunday");
+            startActivity(intent);
+        });
     }
 }

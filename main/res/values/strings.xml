@@ -166,4 +166,14 @@
     <string name="DISCLAIMER_TWO">This mobile application does not contain fitness advice. The fitness information is provided for informational and educational purposes only and is not a
     substitute for professional advice. I do not provide any kind of fitness advice. The use and reliance of any information contained in my mobile application is solely at your own risk.</string>
     <string name="DISCLAIMER_UPDATE">Last updated October 04, 2021</string>
+    <string-array name="weekdays">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+    <string name="MainMenuUserHint">You can click the weekday words to see and change that day\'s workout plan.</string>
 </resources>
