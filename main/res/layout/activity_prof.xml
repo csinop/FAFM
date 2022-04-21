@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".ProfActivity">
+
+    <Button
+        android:id="@+id/returnButtonProfToHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/return_home"
+        android:drawableLeft="@drawable/ic_baseline_navigation_arrow_back_24"
+        app:layout_constraintBottom_toTopOf="@+id/avatarLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_arrow_back_24"
+        tools:ignore="RtlHardcoded" />
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayoutProf"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/profileBottomAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:backgroundTint="?colorPrimary"
+            app:fabAlignmentMode="end"
+            app:fabCradleMargin="10dp"
+            app:layout_anchor="@+id/profileBottomAppBar"
+            app:layout_anchorGravity="bottom|center"
+            app:menu="@menu/profile_menu" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/deleteProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/cd_delete_prof"
+            android:src="@drawable/ic_baseline_delete_icon_white_24"
+            app:backgroundTint="?colorPrimaryVariant"
+            app:layout_anchor="@id/profileBottomAppBar"
+            app:maxImageSize="35dp" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/avatarLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="96dp"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/profileAvatar"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:elevation="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars"
+            android:contentDescription="@string/cd_show_pic" />
+    </androidx.cardview.widget.CardView>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="156dp"
+        android:layout_marginTop="90dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/nameProf3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name"
+            android:textSize="20sp"
+            android:textColor="?colorPrimary" />
+
+        <!--VIEW SWITCHER FOR NAME-->
+
+        <ViewSwitcher
+            android:id="@+id/nameSwitcher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:measureAllChildren="false"
+            android:layout_marginStart="17dp"
+            android:layout_toEndOf="@id/nameProf3">
+
+            <TextView
+                android:id="@+id/profName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="@string/enter_a_name" />
+
+            <EditText
+                android:id="@+id/hiddenEditName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_a_name"
+                android:inputType="textPersonName"
+                android:textSize="20sp"
+                tools:ignore="Autofill" />
+        </ViewSwitcher>
+
+        <ImageButton
+            android:id="@+id/save_edit_changes_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@id/nameSwitcher"
+            android:background="@drawable/rounded_corners"
+            android:padding="2dp"
+            android:visibility="gone"
+            android:src="@drawable/ic_baseline_save_24" />
+
+        <TextView
+            android:id="@+id/ageProf3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nameSwitcher"
+            android:layout_marginTop="8dp"
+            android:text="@string/age"
+            android:textSize="20sp"
+            android:textColor="?colorPrimary" />
+
+        <!--VIEW SWITCHER FOR AGE-->
+        <ViewSwitcher
+            android:id="@+id/ageSwitcher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nameSwitcher"
+            android:measureAllChildren="false"
+            android:layout_marginStart="32dp"
+            android:layout_toEndOf="@id/ageProf3">
+
+            <TextView
+                android:id="@+id/profAge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="2dp"
+                android:textSize="20sp"
+                android:text="@string/enter_an_age" />
+
+            <EditText
+                android:id="@+id/hiddenEditAge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_an_age"
+                android:inputType="numberDecimal"
+                android:textSize="20sp"
+                tools:ignore="Autofill" />
+        </ViewSwitcher>
+
+        <ImageButton
+            android:id="@+id/save_edit_changes_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_below="@id/nameSwitcher"
+            android:layout_toEndOf="@id/ageSwitcher"
+            android:background="@drawable/rounded_corners"
+            android:padding="2dp"
+            android:visibility="gone"
+            android:src="@drawable/ic_baseline_save_24" />
+
+        <TextView
+            android:id="@+id/weightProf3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ageSwitcher"
+            android:layout_marginTop="8dp"
+            android:text="@string/weight"
+            android:textSize="20sp"
+            android:textColor="?colorPrimary" />
+
+        <!--VIEW SWITCHER FOR WEIGHT-->
+        <ViewSwitcher
+            android:id="@+id/weightSwitcher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ageSwitcher"
+            android:measureAllChildren="false"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@id/ageProf3">
+
+            <TextView
+                android:id="@+id/profWeight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="@string/enter_a_weight" />
+
+            <EditText
+                android:id="@+id/hiddenEditWeight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_a_weight"
+                android:inputType="numberDecimal"
+                android:textSize="20sp"
+                tools:ignore="Autofill" />
+        </ViewSwitcher>
+
+        <TextView
+            android:id="@+id/kgProf3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ageSwitcher"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@id/weightSwitcher"
+            android:text="@string/kg"
+            android:textColor="?colorPrimary"
+            android:textSize="20sp" />
+
+        <ImageButton
+            android:id="@+id/save_edit_changes_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_below="@id/ageSwitcher"
+            android:layout_toEndOf="@id/kgProf3"
+            android:background="@drawable/rounded_corners"
+            android:padding="2dp"
+            android:visibility="gone"
+            android:src="@drawable/ic_baseline_save_24" />
+
+        <TextView
+            android:id="@+id/heightProf3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/weightSwitcher"
+            android:layout_marginTop="8dp"
+            android:text="@string/height"
+            android:textSize="20sp"
+            android:textColor="?colorPrimary" />
+
+        <!--VIEW SWITCHER FOR HEIGHT-->
+
+        <ViewSwitcher
+            android:id="@+id/heightSwitcher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/weightSwitcher"
+            android:measureAllChildren="false"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@id/ageProf3">
+
+            <TextView
+                android:id="@+id/profHeight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="@string/enter_a_height" />
+
+            <EditText
+                android:id="@+id/hiddenEditHeight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_a_height"
+                android:inputType="numberDecimal"
+                android:textSize="20sp"
+                tools:ignore="Autofill" />
+        </ViewSwitcher>
+
+        <TextView
+            android:id="@+id/cmProf3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/weightSwitcher"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@id/heightSwitcher"
+            android:text="@string/cm"
+            android:textColor="?colorPrimary"
+            android:textSize="20sp" />
+
+        <ImageButton
+            android:id="@+id/save_edit_changes_height"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_below="@id/weightSwitcher"
+            android:layout_toEndOf="@id/cmProf3"
+            android:background="@drawable/rounded_corners"
+            android:padding="2dp"
+            android:visibility="gone"
+            android:src="@drawable/ic_baseline_save_24" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="272dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/bmrProf3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bmr"
+            android:textColor="?colorPrimary" />
+
+        <TextView
+            android:id="@+id/profBMRLast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@id/caloriesProf3"
+            android:text="@string/bmr" />
+
+        <TextView
+            android:id="@+id/profCals3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_toEndOf="@+id/profCaloriesBurnedLast"
+            android:text="@string/calories"
+            android:textColor="?colorPrimary" />
+
+        <TextView
+            android:id="@+id/caloriesProf3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profBMRLast"
+            android:layout_marginTop="8dp"
+            android:text="@string/burnedCals"
+            android:textColor="?colorPrimary" />
+
+        <TextView
+            android:id="@+id/profCaloriesBurnedLast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profBMRLast"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@id/caloriesProf3"
+            android:text="@string/burnedCals" />
+
+        <TextView
+            android:id="@+id/profCals4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profBMRLast"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@id/profCaloriesBurnedLast"
+            android:text="@string/calories"
+            android:textColor="?colorPrimary" />
+
+        <TextView
+            android:id="@+id/activityProf3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profCaloriesBurnedLast"
+            android:layout_marginTop="8dp"
+            android:text="@string/activityLevel"
+            android:textColor="?colorPrimary" />
+
+        <TextView
+            android:id="@+id/profActivityLevelLast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profCaloriesBurnedLast"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@id/caloriesProf3"
+            android:text="@string/activityLevel" />
+
+        <ProgressBar
+            android:id="@+id/activityProgressBarOne"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="111dp"
+            android:layout_height="17dp"
+            android:layout_below="@id/profCaloriesBurnedLast"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="4dp"
+            android:layout_toEndOf="@id/profCals4"
+            android:background="#000"
+            android:max="100"
+            android:progress="50" />
+
+        <TextView
+            android:id="@+id/bodyFatTag1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/activityProf3"
+            android:layout_marginTop="8dp"
+            android:text="@string/body_fat_percentage"
+            android:textColor="?colorPrimary"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/bodyFatDisplay1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profActivityLevelLast"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@id/caloriesProf3"
+            android:text="@string/body_fat_percentage"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/bodyFatUnit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/activityProf3"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@id/profCaloriesBurnedLast"
+            android:text="@string/percentage"
+            android:textColor="?colorPrimary"
+            android:visibility="invisible" />
+
+        <ProgressBar
+            android:id="@+id/bodyFatProgressBarOne"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="111dp"
+            android:layout_height="17dp"
+            android:layout_below="@id/profActivityLevelLast"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="4dp"
+            android:layout_toEndOf="@id/profCals4"
+            android:background="#000"
+            android:max="100"
+            android:progress="50"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/calculateBodyFat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="388dp"
+        android:text="@string/calc_body_fat"
+        android:padding="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bodyFatCalcLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/calculateBodyFat">
+
+        <Button
+            android:id="@+id/bodyFatCalcCancel"
+            android:layout_width="99dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:onClick="reverseVisibility"
+            android:text="@string/cancel"
+            android:drawableEnd="@drawable/ic_baseline_cancel_24"
+            android:padding="2dp"
+            app:layout_constraintStart_toEndOf="@+id/saveBodyFatButton"
+            app:layout_constraintTop_toBottomOf="@+id/hipInputLayout" />
+
+        <Button
+            android:id="@+id/saveBodyFatButton"
+            android:layout_width="88dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/save_bodyfat"
+            android:textSize="12sp"
+            android:drawableEnd="@drawable/ic_baseline_save_24"
+            android:padding="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/bodyFatCalcLayout"
+            app:layout_constraintTop_toBottomOf="@+id/hipInputLayout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/waistInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:hint="@string/waist"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusBottomEnd="16dp"
+            app:boxCornerRadiusTopStart="16dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="3"
+            app:endIconMode="clear_text"
+            app:helperText="in cm"
+            app:helperTextTextColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/bodyFatCalcLayout">
+
+            <EditText
+                android:id="@+id/waistInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:textSize="12sp"
+                tools:ignore="Autofill,LabelFor"
+                android:importantForAutofill="no" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/neckInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:hint="@string/neck"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusBottomEnd="16dp"
+            app:boxCornerRadiusTopStart="16dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="2"
+            app:endIconMode="clear_text"
+            app:helperText="in cm"
+            app:helperTextTextColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/waistInputLayout">
+
+            <EditText
+                android:id="@+id/neckInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:textSize="12sp"
+                tools:ignore="Autofill,LabelFor"
+                android:importantForAutofill="no"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/hipInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:hint="@string/hip_circumference"
+            android:visibility="gone"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusBottomEnd="16dp"
+            app:boxCornerRadiusTopStart="16dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="3"
+            app:endIconMode="clear_text"
+            app:helperText="in cm"
+            app:helperTextTextColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/neckInputLayout">
+
+            <EditText
+                android:id="@+id/hipInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:textSize="12sp"
+                tools:ignore="Autofill,LabelFor"
+                android:importantForAutofill="no"/>
+        </com.google.android.material.textfield.TextInputLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
