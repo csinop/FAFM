@@ -1,4 +1,4 @@
-# FAFM is a Scheduling app for Bodybuilding
+# FAFM is a Planner for Bodybuilding
      The app has several different fitness moves, more can be added without any trouble.
 # With FAFM:
      You can create and manage a weekly fitness program.
