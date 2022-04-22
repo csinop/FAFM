@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <RelativeLayout
+        android:id="@+id/containerRelativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp">
+
+        <LinearLayout
+            android:id="@+id/tableRelativeLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp">
+
+            <TableLayout
+                android:id="@+id/workoutOfTheDayTableLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </TableLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
+            android:layout_below="@id/tableRelativeLayout">
+
+            <TextView
+                android:id="@+id/countdownText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/curved_corners_white_violet_stroke"
+                android:padding="4dp"
+                android:text="@string/countdown_text"
+                android:textColor="@color/custom_green"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/countdownButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/countdownText"
+                android:drawableEnd="@drawable/ic_baseline_timer_24"
+                android:onClick="countDownButtonOnClick"
+                android:text="@string/start_timer" />
+
+            <ImageButton
+                android:id="@+id/countdownResetButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@id/countdownText"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="-29dp"
+                android:background="@drawable/rounded_corners"
+                android:onClick="resetTimerOnClick"
+                android:src="@drawable/ic_baseline_reset_24"
+                android:text="@string/start_timer"
+                android:visibility="invisible"
+                android:contentDescription="@string/reset_timer" />
+        </RelativeLayout>
+    </RelativeLayout>
+</HorizontalScrollView>
