@@ -121,7 +121,7 @@ public class ProfileFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(!profileExists()){
-            setProfileFragment();
+            launchCreateProfile();
         }else{
             getParcelableIntent();
             saveProfiles();
@@ -173,7 +173,9 @@ public class ProfileFragment extends Fragment {
 
 
         //Fill activity progressbar
-        initializeProfileOne(rootView);
+        if(profileExists()) {
+            initializeProfileOne(rootView);
+        }
         return rootView;
     }
 
@@ -216,18 +218,19 @@ public class ProfileFragment extends Fragment {
 
 
     //launch create profile menu if there is no profile
-    public void setProfileFragment(){
-        if(!profileExists()){
-            Intent i = new Intent(this.requireActivity(), ProfileActivity.class);
-            startActivity(i);
-        }
+    public void launchCreateProfile(){
+        Intent i = new Intent(this.requireActivity(), ProfileActivity.class);
+        startActivity(i);
     }
 
     //MY METHODS
     @SuppressLint("ApplySharedPref")
     public boolean profileExists(){
-        SharedPreferences pref = this.requireActivity().getSharedPreferences("Profiles1", MODE_PRIVATE);
-        return pref.getString("name1", null) != null;
+        SharedPreferences pref = this.requireActivity().getSharedPreferences("DoesProfileExist",Context.MODE_PRIVATE);
+        if(pref.getString("exists",null).equals("yes")) {
+            return true;
+        }
+        return false;
     }
 
     public void saveProfiles(){
@@ -269,7 +272,7 @@ public class ProfileFragment extends Fragment {
         setProfilePicture(rootView);
     }
     @SuppressLint("SetTextI18n")
-    public void fillPersonalInfo(View rootView){
+    public void fillPersonalInfo(@NonNull View rootView){
         TextView profName = (TextView) rootView.findViewById(R.id.profName);
         TextView profAge = (TextView) rootView.findViewById(R.id.profAge);
         TextView profWeight = (TextView) rootView.findViewById(R.id.profWeight);
@@ -311,7 +314,7 @@ public class ProfileFragment extends Fragment {
         }
     }
     @SuppressLint("UseCompatLoadingForDrawables")
-    public void setProgressBarForActivityLevel(View rootView){
+    public void setProgressBarForActivityLevel(@NonNull View rootView){
         ProgressBar activityLevelProgressBar = rootView.findViewById(R.id.activityProgressBarOne);
         SharedPreferences preferences = requireActivity().getSharedPreferences("Profiles1", Context.MODE_PRIVATE);
         if(Double.parseDouble(preferences.getString("activity1",null)) == 1.2) {
