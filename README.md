@@ -2,7 +2,7 @@
      The app has several different fitness moves, more can be added without any trouble.
 # With FAFM:
      You can create and manage a weekly fitness program.
-     You can customize very move in terms of set and repetition count.
+     You can customize every move in terms of set and repetition count.
      
 # How to use:
      In order to create a weekly plan:
