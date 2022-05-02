@@ -1,3 +1,7 @@
+/*OUTDATED ATM*/
+//most functionalities are the same, but the app might be different than what you read here//
+//I will update it as soon as I can.
+
 # FAFM is a Planner for Bodybuilding
      The app has several different fitness moves, more can be added without any trouble.
 # With FAFM:
