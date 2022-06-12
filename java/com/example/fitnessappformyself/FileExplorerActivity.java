@@ -386,13 +386,12 @@ public class FileExplorerActivity extends AppCompatActivity {
             FileExplorerActivity explorer = activityReference.get();
             File file = new File(filePath);
             if(file.exists()) {
-                StringBuilder sb = new StringBuilder();
                 try {
                     BufferedReader br = new BufferedReader(new FileReader(file));
                     String currentLine;
                     boolean readFirstLine = false;
                     while ((currentLine = br.readLine()) != null) {
-                        /* check if the first line in the file is Workout: */
+                        /* check if the first line in the file is "Workout:" */
                         /* if so the user has picked the right file */
                         if (!readFirstLine) {
                             if (!currentLine.equals("Workout:")) {
@@ -413,7 +412,7 @@ public class FileExplorerActivity extends AppCompatActivity {
                             the keyword that the content of the second string, which will be split again,
                             will be written to. Basically split[0] is the SharedPrefs key */
 
-                            String keyword = returnMatchingWeekDay(split[0]);
+                            String keyword = split[0];
                             /* check for body parts here */
                             if (!keyword.equals("") && split.length > 1) {
                                 SharedPreferences dayPref = explorer.getSharedPreferences(keyword + "WorkoutPlan", Context.MODE_PRIVATE);
@@ -429,7 +428,7 @@ public class FileExplorerActivity extends AppCompatActivity {
                                 Log.v("information", "Found body part");
                             }
 
-                            keyword = returnMatchingBodyPart(split[0]);
+                            keyword = split[0];
                             Log.v("information", split[0]);
                             /* check for moves here */
                             if (!keyword.equals("") && split.length > 1) {
@@ -437,11 +436,15 @@ public class FileExplorerActivity extends AppCompatActivity {
                                 SharedPreferences.Editor workoutEditor = workoutPref.edit();
 
                                 String[] contentSplit = split[1].split(",");
-
-                                for (int i = 0; i < contentSplit.length; i += 3) {
-                                    workoutEditor.putString("exercise" + i, contentSplit[i]);
-                                    workoutEditor.putString("set" + i, contentSplit[i + 1]);
-                                    workoutEditor.putString("rep" + i, contentSplit[i + 2]);
+                                
+                                /* the length of the contentSplit must be at least 3,
+                                otherwise something is wrong with the file */
+                                if(contentSplit.length >= 3) {
+                                    for (int i = 0; i < contentSplit.length; i += 3) {
+                                        workoutEditor.putString("exercise" + i, contentSplit[i]);
+                                        workoutEditor.putString("set" + i, contentSplit[i + 1]);
+                                        workoutEditor.putString("rep" + i, contentSplit[i + 2]);
+                                    }
                                 }
 
                                 workoutEditor.putInt("move_count", contentSplit.length / 3);
@@ -458,48 +461,6 @@ public class FileExplorerActivity extends AppCompatActivity {
                 }
             }else{
                 Log.v("information", "File does not exist");
-            }
-        }
-
-        public String returnMatchingWeekDay(@NonNull String word){
-            switch (word) {
-                case "Monday":
-                    return "Monday";
-                case "Tuesday":
-                    return "Tuesday";
-                case "Wednesday":
-                    return "Wednesday";
-                case "Thursday":
-                    return "Thursday";
-                case "Friday":
-                    return "Friday";
-                case "Saturday":
-                    return "Saturday";
-                case "Sunday":
-                    return "Sunday";
-                default:
-                    return "";
-            }
-        }
-
-        public String returnMatchingBodyPart(@NonNull String word){
-            switch (word) {
-                case "CHEST":
-                    return "CHEST";
-                case "BICEPS":
-                    return "BICEPS";
-                case "TRICEPS":
-                    return "TRICEPS";
-                case "BACK":
-                    return "BACK";
-                case "LEGS":
-                    return "LEGS";
-                case "SHOULDERS":
-                    return "SHOULDERS";
-                case "CARDIO":
-                    return "CARDIO";
-                default:
-                    return "";
             }
         }
     }
