@@ -1,3 +1,7 @@
+# this branch contains experimental changes, thus some parts of the app might be unstable.
+# known issues:
+     Profile fragment will feel laggy, there is a problem with the AsyncTask class.
+
 /*OUTDATED ATM*/
 //most functionalities are the same, but the app might be different than what you read here//
 //I will update it as soon as I can.
