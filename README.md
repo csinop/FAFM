@@ -1,3 +1,6 @@
+# Known issues:
+     Profile and Moves tabs will feel laggy, there is an issue with their AsyncTask class.
+
 # FAFM is a Planner for Bodybuilding
      The app has several different fitness moves, more can be added without any trouble.
 # With FAFM:
