@@ -82,19 +82,40 @@
     <string name="countdown_text">02:00</string>
     <string name="start_timer">START</string>
     <string name="pause_timer">PAUSE</string>
-    <string name="import_export">Import/Export Workout</string>
-    <string name="impo">Import</string>
-    <string name="export">Export</string>
+    <string name="imp0rt">Import Workout</string>
+    <string name="export">Export Workout</string>
+    <!--Confirmation Messages-->
+    <string name="saved_changes">Changes have been saved.</string>
+    <string name="export_successful">Export Successful</string>
+    <string name="import_successful">Import Successful</string>
+
     <!--Error Messages-->
     <string name="invalid_username">Username cannot be empty or contain special characters</string>
     <string name="invalid_weight">Weight must be a positive number and no more than 3 digits</string>
     <string name="invalid_height">Height must be a positive number and no more than 3 digits</string>
     <string name="invalid_age">Age must be a positive number and no more than 2 digits</string>
+    <string name="empty_age">Age field cannot be left empty.</string>
+    <string name="empty_weight">Weight field cannot be left empty.</string>
+    <string name="empty_height">Height field cannot be left empty.</string>
     <string name="invalid_gender">Gender must be either male or female</string>
     <string name="invalid_type_string">Weight,Age,Height fields cannot contain letters</string>
     <string name="none_selected">Select one of the above first</string>
     <string name="body_fat_measurements">(waist, neck, hip) measurements must be positive numbers</string>
-    <string name="login_failed">Login failed</string>
+
+    <!--Import Error Messages-->
+    <string name="import_failed">Import Failed</string>
+    <string name="notify_on_import_failure">Import failed, please check the file you are trying to import.</string>
+    <string name="file_does_not_exist">File does not exist.</string>
+    <string name="unable_to_read_the_file">Unable to read the file.</string>
+    <string name="wrong_file">Incorrect file.</string>
+    <string name="pick_a_file_first">You should pick a file first.</string>
+
+    <!--Export Error Messages-->
+    <string name="unable_to_delete_file">Unable to delete file.</string>
+    <string name="unable_to_create_file">Unable to create file.</string>
+    <string name="export_failed">Export Failed</string>
+    <string name="export_already_in_progress">Export is already in progress, please wait.</string>
+
     <!--File Explorer-->
     <string name="file_manager">File Manager</string>
     <string name="new_folder">NF</string>

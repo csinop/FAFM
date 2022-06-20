@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".profile.ProfileActivity">
+    tools:context=".main_menu_fragments.profile.ProfileActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/avatarLayout"
@@ -71,7 +71,7 @@
             android:layout_marginEnd="32dp"
             android:clickable="false"
             android:text="@string/avatar1"
-            android:background="@drawable/rounded_corners"
+            android:background="@drawable/curved_corners"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -83,7 +83,7 @@
             android:layout_marginTop="64dp"
             android:layout_marginEnd="16dp"
             android:text="@string/forwardArrows"
-            android:background="@drawable/rounded_corners"
+            android:background="@drawable/curved_corners"
             android:enabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/avatarThree" />
@@ -95,7 +95,7 @@
             android:layout_marginTop="64dp"
             android:layout_marginStart="16dp"
             android:text="@string/back"
-            android:background="@drawable/rounded_corners"
+            android:background="@drawable/curved_corners"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/avatarOne" />
     </androidx.constraintlayout.widget.ConstraintLayout>

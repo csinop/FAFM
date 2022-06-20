@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".main_menu_fragments.ProfileFragment">
+    tools:context=".main_menu_fragments.profile.ProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -114,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
                 android:layout_toEndOf="@id/nameSwitcher"
-                android:background="@drawable/rounded_corners"
+                android:background="@drawable/curved_corners"
                 android:visibility="gone"
                 android:src="@drawable/ic_baseline_save_24" />
 
@@ -163,7 +163,7 @@
                 android:layout_marginStart="2dp"
                 android:layout_below="@id/nameSwitcher"
                 android:layout_toEndOf="@id/ageSwitcher"
-                android:background="@drawable/rounded_corners"
+                android:background="@drawable/curved_corners"
                 android:visibility="gone"
                 android:src="@drawable/ic_baseline_save_24" />
 
@@ -213,7 +213,7 @@
                 android:layout_marginEnd="2dp"
                 android:layout_below="@id/ageSwitcher"
                 android:layout_toEndOf="@id/weightSwitcher"
-                android:background="@drawable/rounded_corners"
+                android:background="@drawable/curved_corners"
                 android:visibility="gone"
                 android:src="@drawable/ic_baseline_save_24" />
 
@@ -264,7 +264,7 @@
                 android:layout_marginEnd="2dp"
                 android:layout_below="@id/weightSwitcher"
                 android:layout_toEndOf="@id/heightSwitcher"
-                android:background="@drawable/rounded_corners"
+                android:background="@drawable/curved_corners"
                 android:visibility="gone"
                 android:src="@drawable/ic_baseline_save_24" />
         </RelativeLayout>

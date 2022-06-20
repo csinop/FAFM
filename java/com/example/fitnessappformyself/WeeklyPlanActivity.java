@@ -14,12 +14,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fitnessappformyself.main_menu_fragments.StaticWorkoutPreferenceStrings;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 public class WeeklyPlanActivity extends AppCompatActivity {
-
+    private SharedPreferences dayPref;
     private final ArrayList<Button> currentWorkoutList = new ArrayList<>();
     private String currentDay;
     private Boolean changeOccurred = false;
@@ -30,6 +32,9 @@ public class WeeklyPlanActivity extends AppCompatActivity {
         setContentView(R.layout.activity_weekly_plan_acitivity);
 
         onStartGetExtras();
+
+        dayPref  = this.getSharedPreferences(currentDay+StaticWorkoutPreferenceStrings.WORKOUT_PLAN, Context.MODE_PRIVATE);
+
         onCreateInitializeButtonTexts();
         fillWorkoutList();
         showDeleteButton();
@@ -39,8 +44,8 @@ public class WeeklyPlanActivity extends AppCompatActivity {
     }
 
     public void onStartGetExtras(){
-        if(getIntent().hasExtra("weekday")){
-            currentDay = getIntent().getStringExtra("weekday");
+        if(getIntent().hasExtra(StaticWorkoutPreferenceStrings.WEEKDAY)){
+            currentDay = getIntent().getStringExtra(StaticWorkoutPreferenceStrings.WEEKDAY);
             TextView textView = findViewById(R.id.weekdayTitle);
             textView.setText(currentDay);
         }
@@ -57,14 +62,13 @@ public class WeeklyPlanActivity extends AppCompatActivity {
 
     //this methods gets the info from a shared preference file
     public void fillWorkoutList(){
-        SharedPreferences dayPref = this.getSharedPreferences(currentDay+"WorkoutPlan", Context.MODE_PRIVATE);
-        for(int i=0; i<dayPref.getInt("move_count",0); i++){
+        for(int i=0; i<dayPref.getInt(StaticWorkoutPreferenceStrings.MOVE_COUNT,0); i++){
             if(currentWorkoutList != null){
                 //this loop goes through the children of the layout
                 ConstraintLayout currentLayout = findViewById(R.id.weeklyPlanLayout);
                 for(int j = 0; j < currentLayout.getChildCount(); j++){
                     Button currentChild = (Button) currentLayout.getChildAt(j);
-                    if(currentChild.getText().equals(dayPref.getString("exercise"+i,null))){
+                    if(currentChild.getText().equals(dayPref.getString(StaticWorkoutPreferenceStrings.EXERCISE+i,null))){
                         currentWorkoutList.add(currentChild);
                     }
                 }
@@ -130,14 +134,14 @@ public class WeeklyPlanActivity extends AppCompatActivity {
                 saveChanges();
 
                 //let the user know
-                Toast.makeText(this,"Changes have been saved.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,getResources().getString(R.string.saved_changes), Toast.LENGTH_SHORT).show();
             }
             //launch previous activity
             startActivity(intent);
 
             //finish the activity so that
             //if the user presses previous button of their phone
-            //they do not come to this activity
+            //they do not return to this activity
             finish();
         });
     }
@@ -149,14 +153,13 @@ public class WeeklyPlanActivity extends AppCompatActivity {
             saveChanges();
 
             //let the user know
-            Toast.makeText(this,"Changes have been saved.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,getResources().getString(R.string.saved_changes), Toast.LENGTH_SHORT).show();
         });
     }
 
     public void saveChanges(){
         if(changeOccurred) {
-            SharedPreferences programPref = this.getSharedPreferences(currentDay + "WorkoutPlan", Context.MODE_PRIVATE);
-            SharedPreferences.Editor workoutEditor = programPref.edit();
+            SharedPreferences.Editor workoutEditor = dayPref.edit();
             Set<Button> holderSet = convertListToSet(currentWorkoutList);
 
             /* if currentWorkoutList is empty, that means that the user has deleted that program */
@@ -169,11 +172,10 @@ public class WeeklyPlanActivity extends AppCompatActivity {
                 //save selected movements
                 int i = 0;
                 for (Button b : holderSet) {
-                    workoutEditor.putString("exercise" + i, b.getText().toString());
+                    workoutEditor.putString(StaticWorkoutPreferenceStrings.EXERCISE + i, b.getText().toString());
                     i++;
                 }
-                workoutEditor.putInt("move_count", holderSet.size());
-                workoutEditor.apply();
+                workoutEditor.putInt(StaticWorkoutPreferenceStrings.MOVE_COUNT, holderSet.size());
 
                 //since we have a save now
                 //enable the delete button
@@ -182,8 +184,9 @@ public class WeeklyPlanActivity extends AppCompatActivity {
                 //since the changes so far have been saved
                 //no further changes can occur
                 //so set changeOccurred to false
-                changeOccurred = false;
             }
+            changeOccurred = false;
+            workoutEditor.apply();
         }
     }
     //+

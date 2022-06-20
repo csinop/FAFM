@@ -11,15 +11,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 
 import com.example.fitnessappformyself.exception_handler.ExceptionHandler;
 import com.example.fitnessappformyself.main_menu_fragments.CalendarFragment;
-import com.example.fitnessappformyself.main_menu_fragments.ProfileFragment;
+import com.example.fitnessappformyself.main_menu_fragments.profile.ProfileFragment;
 import com.example.fitnessappformyself.main_menu_fragments.ReadMeFragment;
-import com.example.fitnessappformyself.main_menu_fragments.WorkoutFragment;
-import com.example.fitnessappformyself.profile.ProfileActivity;
+import com.example.fitnessappformyself.main_menu_fragments.ViewPagerAdapter;
+import com.example.fitnessappformyself.main_menu_fragments.workout.WorkoutFragment;
+import com.example.fitnessappformyself.main_menu_fragments.profile.ProfileActivity;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.Objects;
@@ -40,40 +40,31 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setFragments();
 
-            //to be changed
         //direct the user to profile creation activity
+        //if there is no created profile
         if(!profileExists()){
             launchCreateProfile();
-
-            //finish the activity so that
-            //if the user presses previous button of their phone
-            //they should not bypass create profile activity
-            finish();
         }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && arePermissionsDenied()) {
+        if(arePermissionsDenied())
             requestPermissions(PERMISSIONS, REQUEST_PERMISSIONS);
-        }
     }
 
     //permission methods start
     private boolean arePermissionsDenied(){
         //if the device is running on Marshmallow or higher
         //check for permissions
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            int p = 0;
-            while(p < PERMISSIONS_COUNT){
-                //if the permission is not granted, return true
-                if(checkSelfPermission(PERMISSIONS[p]) == PackageManager.PERMISSION_DENIED){
-                    return true;
-                }
-                p++;
+        int p = 0;
+        while(p < PERMISSIONS_COUNT){
+            //if the permission is not granted, return true
+            if(checkSelfPermission(PERMISSIONS[p]) == PackageManager.PERMISSION_DENIED){
+                return true;
             }
+            p++;
         }
         return false;
     }

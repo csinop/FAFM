@@ -6,17 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.Manifest;
 import android.app.ActivityManager;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.text.InputType;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,15 +23,12 @@ import android.widget.Toast;
 import com.example.fitnessappformyself.MainActivity;
 import com.example.fitnessappformyself.R;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -178,11 +171,10 @@ public class FileExplorerActivity extends AppCompatActivity {
         checkButton.setOnClickListener(view-> {
             String selectedFilePath = files[selectedFileIndex].getAbsolutePath();
 
-            ImportAsync importer = new ImportAsync(this, selectedFilePath);
-            importer.execute();
-
             findViewById(R.id.refresh).callOnClick();
+
             Intent i = new Intent(this, MainActivity.class);
+            i.putExtra("filePath", selectedFilePath);
             startActivity(i);
         });
     }
@@ -359,112 +351,4 @@ public class FileExplorerActivity extends AppCompatActivity {
         textAdapterOne.setSelected(selected);
     }
     // helper functions end
-
-    /* importer async class */
-    public static class ImportAsync extends AsyncTask<Void, Integer, Boolean> {
-        //to prevent memory leak
-        private final WeakReference<FileExplorerActivity> activityReference;
-        private final String filePath;
-
-        ImportAsync(FileExplorerActivity context, String filePath){
-            activityReference = new WeakReference<>(context);
-            this.filePath = filePath;
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... voids) {
-            importWorkout();
-            return null;
-        }
-
-        public void importWorkout(){
-            readFromFile();
-        }
-
-        /* first word in the file must be Workout:,
-        this to ensure that the users picks the right file */
-        /* After that, first word in each line is a keyword
-        that specifies where the following words belong */
-        public void readFromFile(){
-            FileExplorerActivity explorer = activityReference.get();
-            File file = new File(filePath);
-            if(file.exists()) {
-                try {
-                    BufferedReader br = new BufferedReader(new FileReader(file));
-                    String currentLine;
-                    boolean readFirstLine = false;
-                    while ((currentLine = br.readLine()) != null) {
-                        /* check if the first line in the file is "Workout:" */
-                        /* if so the user has picked the right file */
-                        if (!readFirstLine) {
-                            if (!currentLine.equals("Workout:")) {
-                                Log.v("information", "File format is incorrect");
-                                /* print error message here */
-                                break;
-                            } else {
-                                Log.v("information", "File format is correct");
-                                readFirstLine = true;
-                            }
-                        }else{
-                            /* since the order of week days is always the same,
-                             we can just expect that the file will contain them */
-                            /* we also need to split the strings by "," first and then by ";" second
-                            we do this because that is how I designed the file format */
-                            String[] split = currentLine.split(";");
-                            /* now this array always contains two elements and the first one is always
-                            the keyword that the content of the second string, which will be split again,
-                            will be written to. Basically split[0] is the SharedPrefs key */
-
-                            String keyword = split[0];
-                            /* check for body parts here */
-                            if (!keyword.equals("") && split.length > 1) {
-                                SharedPreferences dayPref = explorer.getSharedPreferences(keyword + "WorkoutPlan", Context.MODE_PRIVATE);
-                                SharedPreferences.Editor workoutEditor = dayPref.edit();
-
-                                String[] contentSplit = split[1].split(",");
-
-                                for (int i = 0; i < contentSplit.length; i++) {
-                                    workoutEditor.putString("exercise" + i, contentSplit[i]);
-                                }
-                                workoutEditor.putInt("move_count", contentSplit.length);
-                                workoutEditor.apply();
-                                Log.v("information", "Found body part");
-                            }
-
-                            keyword = split[0];
-                            Log.v("information", split[0]);
-                            /* check for moves here */
-                            if (!keyword.equals("") && split.length > 1) {
-                                SharedPreferences workoutPref = explorer.getSharedPreferences(keyword + "WorkoutSet", Context.MODE_PRIVATE);
-                                SharedPreferences.Editor workoutEditor = workoutPref.edit();
-
-                                String[] contentSplit = split[1].split(",");
-
-                                /* the length of the contentSplit must be at least 3,
-                                otherwise something is wrong with the file */
-                                if(contentSplit.length >= 3) {
-                                    for (int i = 0; i < contentSplit.length; i += 3) {
-                                        workoutEditor.putString("exercise" + i, contentSplit[i]);
-                                        workoutEditor.putString("set" + i, contentSplit[i + 1]);
-                                        workoutEditor.putString("rep" + i, contentSplit[i + 2]);
-                                    }
-                                }
-
-                                workoutEditor.putInt("move_count", contentSplit.length / 3);
-                                workoutEditor.apply();
-                                Log.v("information", "Found move");
-                            }
-                        }
-                        Log.v("information", "Import successful");
-                    }
-
-                } catch (IOException e) {
-                    Log.v("information", "Unable to read the file");
-                    e.printStackTrace();
-                }
-            }else{
-                Log.v("information", "File does not exist");
-            }
-        }
-    }
 }

@@ -39,14 +39,12 @@
                     android:orientation="vertical"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
-                    <TextView
+                    <Button
                         android:id="@+id/mainMenuMonday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/Monday"
-                        android:textColor="?colorPrimary"
-                        android:textSize="20sp" />
+                        android:text="@string/Monday" />
                     <TableLayout
                         android:id="@+id/mondayLayout"
                         android:layout_width="wrap_content"
@@ -67,14 +65,12 @@
                     android:orientation="vertical"
                     app:layout_constraintStart_toEndOf="@+id/mondaysLayout"
                     app:layout_constraintTop_toTopOf="parent">
-                    <TextView
+                    <Button
                         android:id="@+id/mainMenuTuesday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/Tuesday"
-                        android:textColor="?colorPrimary"
-                        android:textSize="20sp" />
+                        android:text="@string/Tuesday" />
                     <TableLayout
                         android:id="@+id/tuesdayLayout"
                         android:layout_width="wrap_content"
@@ -95,14 +91,12 @@
                     android:orientation="vertical"
                     app:layout_constraintStart_toEndOf="@+id/tuesdaysLayout"
                     app:layout_constraintTop_toTopOf="parent">
-                    <TextView
+                    <Button
                         android:id="@+id/mainMenuWednesday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/Wednesday"
-                        android:textColor="?colorPrimary"
-                        android:textSize="20sp" />
+                        android:text="@string/Wednesday" />
                     <TableLayout
                         android:id="@+id/wednesdayLayout"
                         android:layout_width="wrap_content"
@@ -123,14 +117,12 @@
                     android:orientation="vertical"
                     app:layout_constraintStart_toEndOf="@+id/wednesdaysLayout"
                     app:layout_constraintTop_toTopOf="parent">
-                    <TextView
+                    <Button
                         android:id="@+id/mainMenuThursday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/Thursday"
-                        android:textColor="?colorPrimary"
-                        android:textSize="20sp" />
+                        android:text="@string/Thursday" />
                     <TableLayout
                         android:id="@+id/thursdayLayout"
                         android:layout_width="wrap_content"
@@ -151,14 +143,12 @@
                     android:orientation="vertical"
                     app:layout_constraintStart_toEndOf="@+id/thursdaysLayout"
                     app:layout_constraintTop_toTopOf="parent">
-                    <TextView
+                    <Button
                         android:id="@+id/mainMenuFriday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/Friday"
-                        android:textColor="?colorPrimary"
-                        android:textSize="20sp" />
+                        android:text="@string/Friday" />
                     <TableLayout
                         android:id="@+id/fridayLayout"
                         android:layout_width="wrap_content"
@@ -179,14 +169,12 @@
                     android:orientation="vertical"
                     app:layout_constraintStart_toEndOf="@+id/fridaysLayout"
                     app:layout_constraintTop_toTopOf="parent" >
-                    <TextView
+                    <Button
                         android:id="@+id/mainMenuSaturday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/Saturday"
-                        android:textColor="?colorPrimary"
-                        android:textSize="20sp" />
+                        android:text="@string/Saturday" />
                     <TableLayout
                         android:id="@+id/saturdayLayout"
                         android:layout_width="wrap_content"
@@ -208,14 +196,12 @@
                     android:orientation="vertical"
                     app:layout_constraintStart_toEndOf="@+id/saturdaysLayout"
                     app:layout_constraintTop_toTopOf="parent" >
-                    <TextView
+                    <Button
                         android:id="@+id/mainMenuSunday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="@string/Sunday"
-                        android:textColor="?colorPrimary"
-                        android:textSize="20sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/mainMenuSaturday"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -234,12 +220,12 @@
 
         <LinearLayout
             android:id="@+id/second_half_container"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mainMenuCalendarHint">
+            app:layout_constraintTop_toBottomOf="@+id/mainMenuScrollView">
 
             <!--DISPLAY TODAY'S WORKOUT-->
             <LinearLayout
@@ -247,92 +233,85 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
-
-                <TextView
+                <Button
                     android:id="@+id/workoutOfTodayTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
-                    android:text="@string/workout_of_today"
-                    android:textColor="?colorPrimary"
-                    android:textSize="20sp" />
+                    android:text="@string/workout_of_today" />
 
                 <TableLayout
                     android:id="@+id/workoutOfTodayDisplay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"/>
+                    android:layout_marginStart="10dp" />
             </LinearLayout>
 
             <!--Import/Export Workout-->
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/import_export_container"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginStart="4dp"
-                app:layout_constraintStart_toEndOf="@id/workoutOfTodayContainer"
-                app:layout_constraintTop_toBottomOf="@+id/mainMenuCalendarHint">
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="@id/parent"
+                app:layout_constraintTop_toBottomOf="@+id/workoutOfTodayContainer">
 
-                <TextView
-                    android:id="@+id/import_export_title"
+                <!--Import ProgressBar -->
+
+                <ImageButton
+                    android:id="@+id/pick_file_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/import_export"
-                    android:textColor="?colorPrimary"
-                    android:textSize="20sp" />
+                    android:layout_marginStart="4dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/rounded_corners"
+                    android:padding="6dp"
+                    android:src="@drawable/ic_baseline_folder_open_24"
+                    app:layout_constraintBottom_toTopOf="@id/import_progress_bar"
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <Button
                     android:id="@+id/import_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/impo"/>
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="4dp"
+                    android:padding="3dp"
+                    android:text="@string/imp0rt"
+                    app:layout_constraintBottom_toTopOf="@id/import_progress_bar"
+                    app:layout_constraintStart_toEndOf="@+id/pick_file_button" />
 
-                <!--Import ProgressBar -->
                 <ProgressBar
                     android:id="@+id/import_progress_bar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:visibility="invisible"/>
+                    android:layout_marginStart="4dp"
+                    android:visibility="invisible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/import_button" />
 
+                <!--Export ProgressBar -->
                 <Button
                     android:id="@+id/export_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/export"/>
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="48dp"
+                    android:padding="3dp"
+                    android:text="@string/export"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
-                <!--Export ProgressBar -->
                 <ProgressBar
                     android:id="@+id/export_progress_bar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:visibility="invisible"/>
-            </LinearLayout>
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/export_button" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
-
-        <!--Hints-->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/mainMenuCalendarHint"
-            android:text="@string/MainMenuUserHint"
-            android:layout_marginTop="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/mainMenuScrollView"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/mainMenuWorkoutHint"
-            android:text="@string/MainMenuUserHintTodayWorkout"
-            android:layout_marginTop="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/second_half_container"
-            app:layout_constraintStart_toStartOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

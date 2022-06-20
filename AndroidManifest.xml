@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FitnessAppForMyself">
         <activity
-            android:name=".SelectedBodyPartActivity"
+            android:name=".main_menu_fragments.workout.SelectedBodyPartActivity"
             android:exported="false" />
         <activity
             android:name=".WeeklyPlanActivity"
@@ -30,15 +30,14 @@
             android:exported="true"
             android:label="Crash Report" />
         <activity
-            android:name=".profile.create_profile_next"
+            android:name=".main_menu_fragments.profile.create_profile_next"
             android:exported="true"
             android:label="Profile Setup 2"
-            android:parentActivityName=".profile.ProfileActivity" />
+            android:parentActivityName=".main_menu_fragments.profile.ProfileActivity" />
         <activity
-            android:name=".profile.ProfileActivity"
+            android:name=".main_menu_fragments.profile.ProfileActivity"
             android:exported="true"
-            android:label="Profile Setup"
-            android:parentActivityName=".MainActivity" />
+            android:label="Profile Setup" />
         <activity
             android:name=".file_explorer.FileExplorerActivity"
             android:exported="true"
