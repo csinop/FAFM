@@ -1,0 +1,2 @@
+# Known issues with new-unstable branch:
+  Profile and Moves tab will feel laggy, there is a problem with their AsyncTask class.
