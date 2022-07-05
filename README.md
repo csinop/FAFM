@@ -1,11 +1,11 @@
-# FAFM is a Planner for Bodybuilding
+# The aim of FAFM is to help bodybuilders create and share a training program.
      The app has several different fitness moves, more can be added without any trouble. 
 # With FAFM:
      You can create, manage, and share a weekly fitness program.
      You can customize every move in terms of set and repetition count.
      
 # How to use:
-     If you are launching the app for the first time, you will be asked to create a profile. My intention is to make profile creation entirely optional but for the sake of making development easy, currently you have to create a profile. The information you enter regarding your name (username), weight, height, age, and gender will be encrypted.
+     If you are launching the app for the first time, you will be asked to create a profile. My intention is to make profile creation entirely optional but for the sake of making development easy, currently you have to create a profile. The information you enter regarding your name (username), weight, height, age, and gender is encrypted.
      In order to create a weekly plan:
           1. Click on any weekday on the calendar tab.
           2. You will now see an activity where a plan for that day can be selected.
